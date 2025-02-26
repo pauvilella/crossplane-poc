@@ -4,3 +4,5 @@ kind: Kustomization
 namespace: crossplane-system
 resources:
   - helm-release.yaml
+  - helm.crossplane-provider.yaml
+  - kubernetes.crossplane-provider.yaml
