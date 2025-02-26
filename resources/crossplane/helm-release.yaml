@@ -4,17 +4,24 @@ kind: HelmRelease
 metadata:
   name: crossplane
 spec:
-  interval: 1m0s
-  releaseName: control-plane
+  interval: 1m
+  releaseName: crossplane
   chart:
     spec:
-      chart: ./resources/gremlin-control-plane/helm/control-plane
-      version: ${fv_helm_release_version}
+      chart: crossplane
+      version: 1.19
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: crossplane
         namespace: flux-system
-      interval: 1m0s
-  valuesFrom:
-    - kind: ConfigMap
-      name: gremlin-control-plane-helm-chart-values
+      interval: 1m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
