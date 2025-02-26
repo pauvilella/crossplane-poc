@@ -33,14 +33,28 @@ kubectl --namespace flux-system wait kustomization/ingress-nginx --for=condition
 echo "Waiting for crossplane to be ready..."
 kubectl --namespace flux-system wait kustomization/crossplane --for=condition=ready --timeout=5m
 
-# Waiting for crossplane providers to be installed
-echo "Waiting for crossplane providers to be ready..."
-kubectl --namespace flux-system wait kustomization/crossplane-providers --for=condition=ready --timeout=5m
-kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=5m
+# Creating AWS Crossplane provider needed creds
+echo "Creating AWS Crossplane Provider secret credentials..."
+export AWS_PROFILE=pauvilella # used for Teller to grab the needed secrets from my AWS Secrets Manager
+key_id=$(teller export json | jq .CROSSPLANE_AWS_ACCESS_KEY_ID)
+secret_key=$(teller export json | jq .CROSSPLANE_AWS_SECRET_ACCESS_KEY)
+echo "[default]
+aws_access_key_id = $key_id
+aws_secret_access_key = $secret_key
+" > aws-creds.conf
+kubectl --namespace crossplane-system \
+  create secret generic aws-creds \
+  --from-file creds=./aws-creds.conf
+rm ./aws-creds.conf
 
 # Waiting for komoplane to be installed
 echo "Waiting for komoplane to be ready..."
 kubectl --namespace flux-system wait kustomization/komoplane --for=condition=ready --timeout=5m
+
+# Waiting for crossplane providers to be installed
+echo "Waiting for crossplane providers to be ready..."
+kubectl --namespace flux-system wait kustomization/crossplane-providers --for=condition=ready --timeout=5m
+kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=5m
 
 echo "All done and ready! :)"
 

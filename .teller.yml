@@ -1,0 +1,7 @@
+providers:
+  aws:
+    kind: aws_secretsmanager
+    options:
+    maps:
+      - id: secrets
+        path: git/crossplane-poc
