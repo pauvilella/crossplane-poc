@@ -1,0 +1,8 @@
+---
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  generateName: pau-crossplane-test-
+spec:
+  forProvider:
+    region: eu-west-1
