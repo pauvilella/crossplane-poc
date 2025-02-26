@@ -1,0 +1,20 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: crossplane
+spec:
+  interval: 1m0s
+  releaseName: control-plane
+  chart:
+    spec:
+      chart: ./resources/gremlin-control-plane/helm/control-plane
+      version: ${fv_helm_release_version}
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      interval: 1m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: gremlin-control-plane-helm-chart-values
