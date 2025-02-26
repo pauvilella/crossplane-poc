@@ -32,7 +32,7 @@ spec:
       annotations: {}
       labels: {}
       hosts:
-        - host: 127.0.0.1.nip.io
+        - host: komoplane.127.0.0.1.nip.io
           paths:
             - path: /
               pathType: ImplementationSpecific
