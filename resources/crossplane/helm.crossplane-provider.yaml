@@ -34,4 +34,6 @@ metadata:
 spec:
   package: xpkg.upbound.io/upbound/provider-helm:v0.20.4
   runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
     name: crossplane-provider-helm

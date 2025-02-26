@@ -34,4 +34,6 @@ metadata:
 spec:
   package: xpkg.upbound.io/upbound/provider-kubernetes:v0.17.0
   runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
     name: crossplane-provider-kubernetes
