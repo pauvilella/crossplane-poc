@@ -60,4 +60,4 @@ kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=
 echo "Waiting for crossplane provider configs to be ready..."
 kubectl --namespace flux-system wait kustomization/crossplane-provider-configs --for=condition=ready --timeout=5m
 
-echo "All done and ready! :)"
+echo "All done! :)"
