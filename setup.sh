@@ -27,7 +27,14 @@ flux bootstrap github \
   --path=./clusters/kind-kind \
   --repository=${GITHUB_REPO}
 
-# Wait for crossplane system to be installed and reconciled
+# Waiting for ingress-nginx to be installed
+echo "Waiting for ingress-nginx to be ready..."
+kubectl --namespace flux-system wait kustomization/ingress-nginx --for=condition=ready --timeout=5m
+
+# Waiting for crossplane to be installed
+echo "Waiting for crossplane to be ready..."
+kubectl --namespace flux-system wait kustomization/crossplane --for=condition=ready --timeout=5m
+
+# Wait for crossplane system to be installed
 echo "Waiting for crossplane provider installations..."
-kubectl wait --for=condition=healthy provider.pkg.crossplane.io \
-    --all --timeout=1800s
+kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=5m
