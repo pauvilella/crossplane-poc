@@ -35,6 +35,7 @@ kubectl --namespace flux-system wait kustomization/ingress-nginx --for=condition
 echo "Waiting for crossplane to be ready..."
 kubectl --namespace flux-system wait kustomization/crossplane --for=condition=ready --timeout=5m
 
-# Wait for crossplane system to be installed
-echo "Waiting for crossplane provider installations..."
+# Waiting for crossplane to be installed
+echo "Waiting for crossplane providers to be ready..."
+kubectl --namespace flux-system wait kustomization/crossplane-providers --for=condition=ready --timeout=5m
 kubectl wait --for=condition=healthy provider.pkg.crossplane.io --all --timeout=5m
