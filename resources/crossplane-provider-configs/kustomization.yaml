@@ -4,4 +4,3 @@ kind: Kustomization
 namespace: crossplane-system
 resources:
   - aws.yaml
-  - s3.test.yaml
