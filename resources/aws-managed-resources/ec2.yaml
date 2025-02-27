@@ -1,0 +1,29 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: my-vm
+spec:
+  providerConfigRef:
+    name: provider-aws
+  forProvider:
+    ami: ami-052efd3df9dad4825
+    region: eu-west-1
+    instanceType: t2.nano
+    subnetIdRef:
+      name: my-subnet
+    tags:
+      Name: my-vm
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InstanceState
+metadata:
+  name: my-vm-state
+spec:
+  providerConfigRef:
+    name: provider-aws
+  forProvider:
+    region: eu-west-1
+    instanceIdRef:
+      name: my-vm
+    state: running
