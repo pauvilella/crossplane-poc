@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: aws-managed-resources
 resources:
-  - ec2.yaml
+  # - ec2.yaml
   # - s3.yaml
-  - subnet.yaml
+  # - subnet.yaml
   - vpc.yaml
