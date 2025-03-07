@@ -15,6 +15,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: VPC
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             cidrBlock: 11.0.0.0/16
@@ -28,6 +30,8 @@ spec:
           labels:
             zone: eu-west-1a
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             availabilityZone: eu-west-1a
@@ -43,6 +47,8 @@ spec:
           labels:
             zone: eu-west-1b
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             availabilityZone: eu-west-1b
@@ -58,6 +64,8 @@ spec:
           labels:
             zone: eu-west-1c
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             availabilityZone: eu-west-1c
@@ -70,6 +78,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: InternetGateway
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             vpcIdSelector:
@@ -80,6 +90,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTable
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             vpcIdSelector:
@@ -90,6 +102,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: Route
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
@@ -104,6 +118,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: MainRouteTableAssociation
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
@@ -117,6 +133,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
@@ -130,6 +148,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
@@ -143,6 +163,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
@@ -156,6 +178,8 @@ spec:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: SecurityGroup
         spec:
+          providerConfigRef:
+            name: provider-aws
           forProvider:
             description: Security group description
             region: eu-west-1
