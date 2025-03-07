@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: aws-managed-resources
 resources:
   # - ec2.yaml
-  # - s3.yaml
+  - s3.yaml
   # - subnet.yaml
   - vpc.yaml
