@@ -1,0 +1,19 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: vpcs.pauvilella.com
+spec:
+  group: pauvilella.com
+  names:
+    kind: VPC
+    plural: vpcs
+  claimNames:
+    kind: VPCClaim
+    plural: vpcclaims
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema: {}
