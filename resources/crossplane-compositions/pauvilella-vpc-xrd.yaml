@@ -26,15 +26,15 @@ spec:
                   description: "CIDR of your VPC"
                   type: string
                   default: 11.0.0.0/16
-                subnetACDIR:
+                subnetACIDR:
                   description: "CIDR of the subnet A in your VPC"
                   type: string
                   default: 11.0.0.0/24
-                subnetBCDIR:
+                subnetBCIDR:
                   description: "CIDR of the subnet B in your VPC"
                   type: string
                   default: 11.0.1.0/24
-                subnetCCDIR:
+                subnetCCIDR:
                   description: "CIDR of the subnet C in your VPC"
                   type: string
                   default: 11.0.0.0/24
