@@ -3,6 +3,9 @@ apiVersion: pauvilella.com/v1alpha1
 kind: VPC
 metadata:
   name: pau-test-vpc
+  annotations:
+    author.name: Pau Vilella
+    author.email: pau.vilella.st@gmail.com
 spec:
   compositionSelector:
     matchLabels:
