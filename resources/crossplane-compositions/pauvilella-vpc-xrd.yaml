@@ -16,4 +16,30 @@ spec:
       served: true
       referenceable: true
       schema:
-        openAPIV3Schema: {}
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                vpcCIDR:
+                  description: "CIDR of your VPC"
+                  type: string
+                  default: 11.0.0.0/16
+                subnetACDIR:
+                  description: "CIDR of the subnet A in your VPC"
+                  type: string
+                  default: 11.0.0.0/24
+                subnetBCDIR:
+                  description: "CIDR of the subnet B in your VPC"
+                  type: string
+                  default: 11.0.1.0/24
+                subnetCCDIR:
+                  description: "CIDR of the subnet C in your VPC"
+                  type: string
+                  default: 11.0.0.0/24
+                sgDescription:
+                  description: "Description of the Security Group"
+                  type: string
+              required:
+                - sgDescription

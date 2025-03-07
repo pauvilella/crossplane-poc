@@ -9,6 +9,11 @@ spec:
   compositeTypeRef:
     apiVersion: pauvilella.com/v1alpha1
     kind: VPC
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.annotations
+          toFieldPath: metadata.annotations
   resources:
     - name: vpc
       base:
@@ -22,6 +27,11 @@ spec:
             cidrBlock: 11.0.0.0/16
             enableDnsSupport: true
             enableDnsHostnames: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
+        - fromFieldPath: spec.vpcCIDR
+          toFieldPath: spec.forProvider.cidrBlock
     - name: subnet-a
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -38,6 +48,11 @@ spec:
             cidrBlock: 11.0.0.0/24
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
+        - fromFieldPath: spec.subnetACIDR
+          toFieldPath: spec.forProvider.cidrBlock
     - name: subnet-b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -54,6 +69,11 @@ spec:
             cidrBlock: 11.0.1.0/24
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
+        - fromFieldPath: spec.subnetBCIDR
+          toFieldPath: spec.forProvider.cidrBlock
     - name: subnet-c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -70,6 +90,11 @@ spec:
             cidrBlock: 11.0.2.0/24
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
+        - fromFieldPath: spec.subnetCCIDR
+          toFieldPath: spec.forProvider.cidrBlock
     - name: gateway
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -81,6 +106,9 @@ spec:
             region: eu-west-1
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: routeTable
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -92,6 +120,9 @@ spec:
             region: eu-west-1
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: route
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -106,6 +137,9 @@ spec:
             destinationCidrBlock: 0.0.0.0/0
             gatewayIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: mainRouteTableAssociation
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -119,6 +153,9 @@ spec:
               matchControllerRef: true
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: routeTableAssociation1a
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -132,6 +169,9 @@ spec:
               matchControllerRef: true
             subnetIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: routeTableAssociation1b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -145,6 +185,9 @@ spec:
               matchControllerRef: true
             subnetIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: routeTableAssociation1c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -158,6 +201,9 @@ spec:
               matchControllerRef: true
             subnetIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
     - name: securityGroup
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -170,3 +216,8 @@ spec:
             region: eu-west-1
             vpcIdSelector:
               matchControllerRef: true
+      patches:
+        - type: PatchSet
+          patchSetName: metadata
+        - fromFieldPath: spec.sgDescription
+          toFieldPath: spec.forProvider.description
