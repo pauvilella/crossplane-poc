@@ -37,8 +37,7 @@ spec:
             availabilityZone: eu-west-1a
             cidrBlock: 11.0.0.0/24
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: subnet-b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -54,8 +53,7 @@ spec:
             availabilityZone: eu-west-1b
             cidrBlock: 11.0.1.0/24
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: subnet-c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -71,8 +69,7 @@ spec:
             availabilityZone: eu-west-1c
             cidrBlock: 11.0.2.0/24
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: gateway
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -83,8 +80,7 @@ spec:
           forProvider:
             region: eu-west-1
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: routeTable
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -95,8 +91,7 @@ spec:
           forProvider:
             region: eu-west-1
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: route
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -107,12 +102,10 @@ spec:
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
             destinationCidrBlock: 0.0.0.0/0
             gatewayIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: mainRouteTableAssociation
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -123,11 +116,9 @@ spec:
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: routeTableAssociation1a
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -138,11 +129,9 @@ spec:
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
             subnetIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: routeTableAssociation1b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -153,11 +142,9 @@ spec:
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
             subnetIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: routeTableAssociation1c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -168,11 +155,9 @@ spec:
           forProvider:
             region: eu-west-1
             routeTableIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
             subnetIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
     - name: securityGroup
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
@@ -184,5 +169,4 @@ spec:
             description: Security group description
             region: eu-west-1
             vpcIdSelector:
-              matchLabels:
-                crossplane.io/composite: vpc
+              matchControllerRef: true
