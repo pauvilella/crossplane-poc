@@ -16,7 +16,7 @@ spec:
         kind: VPC
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             cidrBlock: 11.0.0.0/16
             enableDnsSupport: true
             enableDnsHostnames: true
@@ -26,168 +26,139 @@ spec:
         kind: Subnet
         metadata:
           labels:
-            zone: us-east-1a
+            zone: eu-west-1a
         spec:
           forProvider:
-            region: us-east-1
-            availabilityZone: us-east-1a
+            region: eu-west-1
+            availabilityZone: eu-west-1a
             cidrBlock: 11.0.0.0/24
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: subnet-b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: Subnet
         metadata:
           labels:
-            zone: us-east-1b
+            zone: eu-west-1b
         spec:
           forProvider:
-            region: us-east-1
-            availabilityZone: us-east-1b
+            region: eu-west-1
+            availabilityZone: eu-west-1b
             cidrBlock: 11.0.1.0/24
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: subnet-c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: Subnet
         metadata:
           labels:
-            zone: us-east-1c
+            zone: eu-west-1c
         spec:
           forProvider:
-            region: us-east-1
-            availabilityZone: us-east-1c
+            region: eu-west-1
+            availabilityZone: eu-west-1c
             cidrBlock: 11.0.2.0/24
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
-    - name: subnetgroup
-      base:
-        apiVersion: rds.aws.upbound.io/v1beta1
-        kind: SubnetGroup
-        spec:
-          forProvider:
-            region: us-east-1
-            description: I'm too lazy to write a good description
-            subnetIdSelector:
-              matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: gateway
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: InternetGateway
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: routeTable
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTable
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: route
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: Route
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             routeTableIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
             destinationCidrBlock: 0.0.0.0/0
             gatewayIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: mainRouteTableAssociation
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: MainRouteTableAssociation
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             routeTableIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: routeTableAssociation1a
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             routeTableIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
             subnetIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: routeTableAssociation1b
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             routeTableIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
             subnetIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: routeTableAssociation1c
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: RouteTableAssociation
         spec:
           forProvider:
-            region: us-east-1
+            region: eu-west-1
             routeTableIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
             subnetIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
+                crossplane.io/composite: vpc
     - name: securityGroup
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: SecurityGroup
         spec:
           forProvider:
-            description: I am too lazy to write descriptions
-            region: us-east-1
+            description: Security group description
+            region: eu-west-1
             vpcIdSelector:
               matchLabels:
-                crossplane.io/composite: my-db
-    - name: securityGroupRule
-      base:
-        apiVersion: ec2.aws.upbound.io/v1beta1
-        kind: SecurityGroupRule
-        spec:
-          forProvider:
-            description: I am too lazy to write descriptions
-            region: us-east-1
-            type: ingress
-            fromPort: 5432
-            toPort: 5432
-            protocol: tcp
-            cidrBlocks:
-              - 0.0.0.0/0
-            securityGroupIdSelector:
-              matchLabels:
-                crossplane.io/composite: my-db
-    - name: rdsinstance
+                crossplane.io/composite: vpc
