@@ -2,14 +2,13 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: aws-postgresql
+  name: aws-vpc
   labels:
     provider: aws
-    db: postgresql
 spec:
   compositeTypeRef:
-    apiVersion: devopstoolkitseries.com/v1alpha1
-    kind: SQL
+    apiVersion: pauvilella.com/v1alpha1
+    kind: VPC
   resources:
     - name: vpc
       base:
