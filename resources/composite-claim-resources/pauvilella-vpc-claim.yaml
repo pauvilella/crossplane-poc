@@ -1,0 +1,17 @@
+---
+apiVersion: pauvilella.com/v1alpha1
+kind: VPCClaim
+metadata:
+  name: pau-test-vpc
+  annotations:
+    author.name: Pau Vilella
+    author.email: pau.vilella.st@gmail.com
+spec:
+  compositionSelector:
+    matchLabels:
+      provider: aws
+  vpcCIDR: 12.0.0.0/16
+  subnetACIDR: 12.0.0.0/24
+  subnetBCIDR: 12.0.1.0/24
+  subnetCCIDR: 12.0.2.0/24
+  sgDescription: Pau modified SG description
