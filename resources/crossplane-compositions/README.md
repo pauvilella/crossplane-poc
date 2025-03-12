@@ -1,4 +1,4 @@
-# Package Composition
+# Configuration Package
 
 To package the XRD, the Composition resources and the required providers
 into a single OCI image, we can run:
