@@ -5,8 +5,8 @@ metadata:
   name: crossplane-compositions
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: crossplane-provider-configs
+  # dependsOn:
+  #   - name: crossplane-provider-configs
   interval: 1m
   path: ./resources/crossplane-compositions
   prune: true

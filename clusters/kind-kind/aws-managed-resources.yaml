@@ -5,8 +5,8 @@ metadata:
   name: aws-managed-resources
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: crossplane-provider-configs
+  # dependsOn:
+  #   - name: crossplane-provider-configs
   interval: 1m
   path: ./resources/aws-managed-resources
   prune: true

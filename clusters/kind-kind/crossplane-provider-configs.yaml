@@ -5,8 +5,8 @@ metadata:
   name: crossplane-provider-configs
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: crossplane-providers
+  # dependsOn:
+  #   - name: crossplane-providers
   interval: 1m
   path: ./resources/crossplane-provider-configs
   prune: true
