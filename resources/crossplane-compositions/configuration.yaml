@@ -1,0 +1,7 @@
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: pauvilella-vpc
+spec:
+  package: ghcr.io/pauvilella/crossplane-poc:0.0.1

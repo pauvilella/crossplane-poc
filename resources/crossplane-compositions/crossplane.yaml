@@ -1,0 +1,16 @@
+apiVersion: meta.pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: pauvilella-vpc
+  annotations:
+    meta.crossplane.io/maintainer: Pau Vilella
+    meta.crossplane.io/source: github.com/pauvilella/crossplane-poc
+    meta.crossplane.io/license: MIT
+    meta.crossplane.io/description: Example of VPC composition package for AWS
+    meta.crossplane.io/readme: A Configuration package that defines a VPC and VPCClaim types that can be used to create and provision fully operational vpcs in AWS.
+spec:
+  crossplane:
+    version: ">=v1.19.0"
+  dependsOn:
+    - provider: xpkg.upbound.io/upbound/provider-aws-ec2
+      version: ">=v1.0.0"
