@@ -2,14 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: crossplane-provider-configs
+  name: crossplane-configurations
   namespace: flux-system
 spec:
   dependsOn:
-    - name: crossplane-providers
-    - name: crossplane-configurations
+    - name: crossplane
   interval: 1m
-  path: ./resources/crossplane-provider-configs
+  path: ./resources/crossplane-configurations
   prune: true
   sourceRef:
     kind: GitRepository
