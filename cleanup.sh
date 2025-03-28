@@ -22,4 +22,9 @@ done
 echo "Deleting kind management cluster..."
 kind delete cluster
 
+# Logout from ghcr.io
+
+echo "Loging out from ghcr.io..."
+docker logout ghcr.io
+
 echo "All done! :)"

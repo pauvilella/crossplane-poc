@@ -6,6 +6,12 @@ set -e
 # Management Cluster #
 ######################
 
+# Loging in to ghcr.io
+echo "Loging in to ghcr.io"
+export AWS_PROFILE=pauvilella # used for Teller to grab the needed secrets from my AWS Secrets Manager
+gh_pat=$(teller export json | jq .GITHUB_PAT)
+echo $gh_pat | docker login ghcr.io -u pauvilella --password-stdin
+
 # Create kind cluster
 echo "Creating Kind local cluster as management cluster..."
 kind create cluster --config kind.yaml
@@ -35,7 +41,6 @@ kubectl --namespace flux-system wait kustomization/crossplane --for=condition=re
 
 # Creating AWS Crossplane provider needed creds
 echo "Creating AWS Crossplane Provider secret credentials..."
-export AWS_PROFILE=pauvilella # used for Teller to grab the needed secrets from my AWS Secrets Manager
 key_id=$(teller export json | jq .CROSSPLANE_AWS_ACCESS_KEY_ID)
 secret_key=$(teller export json | jq .CROSSPLANE_AWS_SECRET_ACCESS_KEY)
 echo "[default]
